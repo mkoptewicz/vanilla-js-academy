@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day 03</title>
+  </head>
+  <body>
+    <form>
+      <div>
+        <label for="current-password">Current Password</label>
+        <input type="password" name="current-password" id="current-password" />
+      </div>
+
+      <div>
+        <label for="new-password">New Password</label>
+        <input type="password" name="new-password" id="new-password" />
+      </div>
+
+      <div>
+        <label for="show-passwords">
+          <input type="checkbox" name="show-passwords" id="show-passwords" />
+          Show passwords
+        </label>
+      </div>
+
+      <p>
+        <button type="submit">Change Passwords</button>
+      </p>
+    </form>
+    <script>
+      const checkbox = document.querySelector("#show-passwords");
+      const passwordInputs = [...document.querySelectorAll("[type='password']")];
+      const togglePasswordVisibility = () => {
+        passwordInputs.forEach(input => {
+          checkbox.checked ? input.type = "text" : input.type = "password";
+        });
+      };
+      checkbox.addEventListener("click", togglePasswordVisibility);
+    </script>
+  </body>
+</html>

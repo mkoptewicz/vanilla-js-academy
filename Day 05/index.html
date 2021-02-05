@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day 05</title>
+  </head>
+  <body>
+    <h2>Change Username</h2>
+
+    <p>Enter your username and password to change your username.</p>
+
+    <form>
+      <div>
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" />
+      </div>
+
+      <div>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" />
+      </div>
+
+      <div>
+        <label for="show-password">
+          <input type="checkbox" name="show-passwords" id="show-password" />
+          Show password
+        </label>
+      </div>
+
+      <p>
+        <button type="submit">Change Username</button>
+      </p>
+    </form>
+
+    <h2>Change Password</h2>
+
+    <p>Enter your current password and new password below.</p>
+
+    <form id="change-passwords">
+      <div>
+        <label for="current-password">Current Password</label>
+        <input type="password" name="current-password" id="current-password" />
+      </div>
+
+      <div>
+        <label for="new-password">New Password</label>
+        <input type="password" name="new-password" id="new-password" />
+      </div>
+
+      <div>
+        <label for="show-passwords">
+          <input type="checkbox" name="show-passwords" id="show-passwords" />
+          Show passwords
+        </label>
+      </div>
+
+      <p>
+        <button type="submit">Change Passwords</button>
+      </p>
+    </form>
+    <script>
+      const changePasswordsForm = document.querySelector("#change-passwords");
+      const usernamePasswordInput = document.querySelector("#password");
+      const changePasswordInputs = [
+        ...changePasswordsForm.querySelectorAll("[type='password']"),
+      ];
+      const togglePasswordVisibility = e => {
+        e.target.matches("#show-password") && e.target.checked
+          ? (usernamePasswordInput.type = "text")
+          : (usernamePasswordInput.type = "password");
+        if (e.target.matches("#show-passwords")) {
+          changePasswordInputs.forEach(input => {
+            e.target.checked
+              ? (input.type = "text")
+              : (input.type = "password");
+          });
+        }
+      };
+      window.addEventListener("click", togglePasswordVisibility);
+    </script>
+  </body>
+</html>

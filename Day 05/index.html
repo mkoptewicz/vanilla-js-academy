@@ -65,19 +65,28 @@
       const changePasswordInputs = [
         ...changePasswordsForm.querySelectorAll("[type='password']"),
       ];
-      const togglePasswordVisibility = e => {
-        e.target.matches("#show-password") && e.target.checked
-          ? (usernamePasswordInput.type = "text")
-          : (usernamePasswordInput.type = "password");
-        if (e.target.matches("#show-passwords")) {
-          changePasswordInputs.forEach(input => {
-            e.target.checked
-              ? (input.type = "text")
-              : (input.type = "password");
-          });
+      const handlePasswordVisibility = e => {
+        if (e.target.matches("#show-password")) {
+          toggleType(usernamePasswordInput, e);
+        } else if (e.target.matches("#show-passwords")) {
+          changePasswordInputs.forEach(input => toggleType(input, e));
         }
       };
-      window.addEventListener("click", togglePasswordVisibility);
+      const toggleType = (input, e) =>
+        e.target.checked ? (input.type = "text") : (input.type = "password");
+      window.addEventListener("click", handlePasswordVisibility);
+
+      ////// CLOSEST()METHOD /////
+      // const handlePasswordVisibility = e => {
+      //   const inputs = e.target
+      //     .closest("form")
+      //     .querySelectorAll('input:not([type="checkbox"])[name$="password"]');
+      //   inputs.forEach(input =>
+      //     e.target.checked ? (input.type = "text") : (input.type = "password")
+      //   );
+      // };
+
+      // window.addEventListener("click", handlePasswordVisibility);
     </script>
   </body>
 </html>

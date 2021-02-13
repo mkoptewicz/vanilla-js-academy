@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        display: flex;
+        justify-items: space-between;
+        align-items: center;
+        flex-direction: column;
+        padding-top: 5rem;
+      }
+      #text {
+        width: 20rem;
+        height: 10rem;
+        margin: 3rem;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <label for="text">Enter your text below.</label>
+    <textarea id="text"></textarea>
+
+    <p>
+      You've written <strong><span id="word-count">0</span> words</strong> and
+      <strong><span id="character-count">0</span> characters</strong>.
+    </p>
+  </body>
+  <script>
+    const textField = document.querySelector("#text");
+    const spanChars = document.querySelector("#character-count");
+    const spanWords = document.querySelector("#word-count");
+    const countCharactersAndWords = () => {
+      const wordCount = textField.value.split(/\s+/).filter(word => word !== "")
+        .length;
+      spanWords.textContent = wordCount;
+      spanChars.textContent = textField.value.length;
+    };
+    textField.addEventListener("input", countCharactersAndWords);
+  </script>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <blockquote id="quote">
+      Click the button below to see Ron Swanson quote!
+    </blockquote>
+
+    <p>
+      <button id="quote-generator">More Ron</button>
+    </p>
+    <script>
+      const url = "https://ron-swanson-quotes.herokuapp.com/v2/quotes";
+      const quoteElement = document.querySelector("#quote");
+      const buttonGenerateQuote = document.querySelector("#quote-generator");
+      const generateQuote = () =>
+        fetch(url)
+          .then(response => response.json())
+          .then(data => (quoteElement.textContent = data));
+      document.addEventListener("click", function (e) {
+        if (e.target.matches("#quote-generator")) generateQuote();
+        console.log("ok");
+      });
+    </script>
+  </body>
+</html>

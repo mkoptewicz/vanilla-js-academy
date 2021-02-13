@@ -4,29 +4,20 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Ron Swansom quote generator</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
   </head>
   <body>
-    <blockquote id="quote">
+    <blockquote id="quote" class="quote-container">
       Click the button below to see Ron Swanson quote!
     </blockquote>
 
-    <p>
-      <button id="quote-generator">More Ron</button>
-    </p>
-    <script>
-      const url = "https://ron-swanson-quotes.herokuapp.com/v2/quotes";
-      const quoteElement = document.querySelector("#quote");
-      const buttonGenerateQuote = document.querySelector("#quote-generator");
-      const generateQuote = () =>
-        fetch(url)
-          .then(response => response.json())
-          .then(data => (quoteElement.textContent = data));
-      document.addEventListener("click", function (e) {
-        if (e.target.matches("#quote-generator")) generateQuote();
-        console.log("ok");
-      });
-    </script>
+    <button id="quote-generator" class="button__quote">More Ron!</button>
   </body>
 </html>

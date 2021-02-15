@@ -10,7 +10,7 @@ const buttonGenerateQuote = document.querySelector("#quote-generator");
 //         return Promise.reject(response);
 //       }
 //     })
-//     .then(data => (quoteElement.textContent = data))
+//     .then(data => (quoteElement.textContent = data[0]))
 //     .catch(err => console.warn(err));
 
 async function generateQuote() {
@@ -20,7 +20,7 @@ async function generateQuote() {
     quoteElement.textContent = errMessage;
   }
   const quote = await response.json();
-  quoteElement.textContent = quote;
+  quoteElement.textContent = quote[0];
 }
 
 document.addEventListener("click", function (e) {

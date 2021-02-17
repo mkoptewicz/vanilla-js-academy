@@ -9,7 +9,7 @@ const options = {
   hour: "numeric",
   minute: "numeric",
 };
-function displaystories(stories) {
+function displayStories(stories) {
   stories.forEach(story => {
     const {
       abstract,
@@ -21,7 +21,7 @@ function displaystories(stories) {
     } = story;
 
     const html = `<div class="article">
-     <h2 class="article__title"><a href=${short_url}>${title}</a></h2>
+     <h2 class="article__title"><a target="_blank" href=${short_url}>${title}</a></h2>
      <div class="article__wrapper">
      <p class="article__date">Published: ${new Intl.DateTimeFormat(
        navigator.language,
@@ -30,7 +30,9 @@ function displaystories(stories) {
      <p class="article__authors">${
        byline ? byline : "Authors not mentioned"
      }</p>
-     <img loading="lazy" src=${multimedia[3].url}>
+     <a target="_blank" href=${short_url}><img loading="lazy" src=${
+      multimedia[3].url
+    }></a>
      <p class="article__description">${abstract}</p>
      </div>
      <a class="btn_more" target="_blank" href=${short_url}>Read More</a>
@@ -39,14 +41,16 @@ function displaystories(stories) {
   });
 }
 
-async function getstories() {
+async function getStories() {
   try {
     const response = await fetch(url);
     const stories = await response.json();
-    displaystories(stories.results);
+    console.log(stories)
+    displayStories(stories.results);
   } catch (err) {
     console.log(err.message);
     storiesContainer.innerHTML = `<p class="error">We can't deliver you latest top stories right now. Please try again later.</p>`;
   }
+  
 }
-getstories();
+getStories();

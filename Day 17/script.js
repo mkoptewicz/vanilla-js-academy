@@ -21,7 +21,7 @@ function displaystories(stories) {
     } = story;
 
     const html = `<div class="article">
-     <h2 class="article__title">${title}</h2>
+     <h2 class="article__title"><a href=${short_url}>${title}</a></h2>
      <div class="article__wrapper">
      <p class="article__date">Published: ${new Intl.DateTimeFormat(
        navigator.language,
@@ -30,7 +30,7 @@ function displaystories(stories) {
      <p class="article__authors">${
        byline ? byline : "Authors not mentioned"
      }</p>
-     <img loading="lazy" src=${multimedia[0].url}>
+     <img loading="lazy" src=${multimedia[3].url}>
      <p class="article__description">${abstract}</p>
      </div>
      <a class="btn_more" target="_blank" href=${short_url}>Read More</a>

@@ -18,15 +18,18 @@ function displaystories(stories) {
       multimedia,
     } = story;
 
-    const html = `<div>
+    const html = `<div class="article">
      <h2 class="article__title">${title}</h2>
-     <p class="article__date">Published: ${new Intl.DateTimeFormat(navigator.language, options).format(
-       new Date(published_date)
-     )}</p>
-     <p class="authors">${byline}</p>
+     <div class="article__wrapper"
+     <p class="article__date">Published: ${new Intl.DateTimeFormat(
+       navigator.language,
+       options
+     ).format(new Date(published_date))}</p>
+     <p class="article__authors">${byline}</p>
      <img loading="lazy" src=${multimedia[0].url}>
      <p class="article__description">${abstract}</p>
-     <a class="btn__more" target="_blank" href=${short_url}>Read More</a>
+     </div>
+     <a class="btn_more" target="_blank" href=${short_url}>Read More</a>
      </div>`;
     storiesContainer.innerHTML += html;
   });

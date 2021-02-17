@@ -1,6 +1,7 @@
 const key = "QtmzwxVxdbAe7Ml8ol1NrPDK0jLCLHVV";
 const url = `//api.nytimes.com/svc/topstories/v2/home.json?api-key=${key}`;
 const storiesContainer = document.querySelector("#app");
+
 const options = {
   weekday: "long",
   year: "numeric",
@@ -45,12 +46,11 @@ async function getStories() {
   try {
     const response = await fetch(url);
     const stories = await response.json();
-    console.log(stories)
     displayStories(stories.results);
   } catch (err) {
     console.log(err.message);
     storiesContainer.innerHTML = `<p class="error">We can't deliver you latest top stories right now. Please try again later.</p>`;
   }
-  
 }
+
 getStories();

@@ -6,6 +6,8 @@ const options = {
   year: "numeric",
   month: "long",
   day: "numeric",
+  hour: "numeric",
+  minute: "numeric",
 };
 function displaystories(stories) {
   stories.forEach(story => {
@@ -20,12 +22,14 @@ function displaystories(stories) {
 
     const html = `<div class="article">
      <h2 class="article__title">${title}</h2>
-     <div class="article__wrapper"
+     <div class="article__wrapper">
      <p class="article__date">Published: ${new Intl.DateTimeFormat(
        navigator.language,
        options
      ).format(new Date(published_date))}</p>
-     <p class="article__authors">${byline}</p>
+     <p class="article__authors">${
+       byline ? byline : "Authors not mentioned"
+     }</p>
      <img loading="lazy" src=${multimedia[0].url}>
      <p class="article__description">${abstract}</p>
      </div>

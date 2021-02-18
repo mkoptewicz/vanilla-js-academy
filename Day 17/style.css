@@ -30,6 +30,10 @@ h1 {
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 0.5em;
 }
+.article--hidden {
+  opacity: 0;
+  transform: translateY(50px);
+}
 .article * + * {
   margin-top: 1rem;
 }

@@ -32,11 +32,13 @@ h2 {
   text-transform: uppercase;
   letter-spacing: 1px;
   border-radius: 0.5em;
+  outline: none;
   background-color: rgb(253, 204, 67);
   cursor: pointer;
   transition: 0.3s;
 }
 .btn__sort:hover,
+.btn__:focus,
 .active {
   color: rgb(253, 204, 67);
   background-color: black;
@@ -53,16 +55,16 @@ h2 {
 .article {
   display: flex;
   flex-direction: column;
-  flex: 0 0 350px;
+  flex: 1 1 320px;
   max-width: 350px;
-  margin-bottom: 2rem;
+  margin: 5px;
   padding: 1rem;
   min-height: 600px;
   box-shadow: 4px 4px 14px 0px rgba(0, 0, 0, 0.3);
   transition: 1s all;
 }
 .article * + * {
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 }
 .article__title {
   text-align: left;

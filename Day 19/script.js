@@ -3,7 +3,7 @@ const storiesContainer = document.querySelector("#app");
 const sectionTitle = document.querySelector("#section__title");
 const btnsSort = document.querySelectorAll(".btn__sort");
 const options = {
-  weekday: "long",
+  weekday: "short",
   year: "numeric",
   month: "long",
   day: "numeric",

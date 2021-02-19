@@ -12,34 +12,61 @@ h1 {
   margin-top: 2rem;
   padding: 0.5em 1em;
 }
-
+h2 {
+  text-align: center;
+}
+.btns-container {
+  max-width: 1000px;
+  width: 90%;
+  margin: 2rem auto 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.btn__sort {
+  min-width: 7rem;
+  border: none;
+  margin: 10px;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 0.5em;
+  background-color: rgb(253, 204, 67);
+  cursor: pointer;
+  transition: 0.3s;
+}
+.btn__sort:hover,
+.active {
+  color: rgb(253, 204, 67);
+  background-color: black;
+}
+.section__title {
+  text-transform: capitalize;
+}
 .container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  padding: 3rem;
+  padding: 2rem;
 }
 .article {
   display: flex;
   flex-direction: column;
-  flex: 1 1 500px;
-  max-width: 500px;
+  flex: 0 0 350px;
+  max-width: 350px;
   margin-bottom: 2rem;
   padding: 1rem;
   min-height: 600px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 0.5em;
+  box-shadow: 4px 4px 14px 0px rgba(0, 0, 0, 0.3);
   transition: 1s all;
-}
-.article--hidden {
-  opacity: 0;
-  transform: translateY(50px);
 }
 .article * + * {
   margin-top: 1rem;
 }
 .article__title {
-  flex-basis: 4em;
+  text-align: left;
+  flex-basis: 5em;
   font-size: 1.5rem;
 }
 .article__title:hover {
@@ -57,6 +84,7 @@ h1 {
   margin-bottom: 0.5rem;
   font-size: 0.875rem;
   font-style: italic;
+  min-height: 4rem;
 }
 a {
   text-decoration: none;
@@ -73,7 +101,6 @@ img {
   line-height: 1.5;
 }
 .btn_more {
-  display: block;
   width: 8rem;
   color: white;
   text-align: center;

@@ -1,6 +1,7 @@
 const key = "QtmzwxVxdbAe7Ml8ol1NrPDK0jLCLHVV";
-const url = `//api.nytimes.com/svc/topstories/v2/home.json?api-key=${key}`;
 const storiesContainer = document.querySelector("#app");
+const sectionTitle = document.querySelector("#section__title");
+const btnsSort = document.querySelectorAll(".btn__sort");
 const options = {
   weekday: "long",
   year: "numeric",
@@ -9,17 +10,14 @@ const options = {
   hour: "numeric",
   minute: "numeric",
 };
-const revealArticles = () => {
-  document.querySelectorAll(".article").forEach((article, i) => {
-    article.style.transitionDelay = `${i * 0.2}s`;
-    article.classList.remove("article--hidden");
-  });
-};
-function displayStories(stories, callback) {
+
+function displayStories(stories) {
   storiesContainer.innerHTML = stories
+    .slice(0, 5)
     .map(
       ({ abstract, byline, published_date, title, short_url, multimedia }) => {
-        const html = `<div class="article article--hidden">
+        const html = `
+     <div class="article">
      <h2 class="article__title"><a target="_blank" href=${short_url}>${title}</a></h2>
      <div class="article__wrapper">
      <p class="article__date">Published: ${new Intl.DateTimeFormat(
@@ -40,18 +38,28 @@ function displayStories(stories, callback) {
       }
     )
     .join("");
-  setTimeout(callback, 0);
+}
+function displayCurrentSection(category) {
+  btnsSort.forEach(btn => btn.classList.remove("active"));
+  document.querySelector(`#${category}`).classList.add("active");
 }
 
-async function getStories() {
+async function getStories(category) {
   try {
-    const response = await fetch(url);
+    const response = await fetch(
+      `//api.nytimes.com/svc/topstories/v2/${category}.json?api-key=${key}`
+    );
     const stories = await response.json();
-    displayStories(stories.results, revealArticles);
+    displayStories(stories.results);
+    displayCurrentSection(category);
   } catch (err) {
     console.log(err.message);
     storiesContainer.innerHTML = `<p class="error">We can't deliver you latest top stories right now. Please try again later.</p>`;
   }
 }
 
-getStories();
+document.addEventListener("click", e => {
+  if (e.target.matches(".btn__sort")) getStories(e.target.getAttribute("id"));
+});
+
+getStories("arts");

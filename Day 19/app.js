@@ -10,14 +10,28 @@ const options = {
   hour: "numeric",
   minute: "numeric",
 };
-
+function revealArticles() {
+  document.querySelectorAll(".article").forEach((a, i) => {
+    a.style.transitionDelay = `${i * 0.2}s`;
+    setTimeout(() => a.classList.remove("article--hidden"), 0);
+  });
+}
 function displayStories(stories) {
-  storiesContainer.innerHTML = stories
-    .slice(0, 5)
-    .map(
-      ({ abstract, byline, published_date, title, short_url, multimedia }) => {
-        const html = `
-     <div class="article">
+  return new Promise(resolve =>
+    resolve(
+      (storiesContainer.innerHTML = stories
+        .slice(0, 5)
+        .map(
+          ({
+            abstract,
+            byline,
+            published_date,
+            title,
+            short_url,
+            multimedia,
+          }) => {
+            const html = `
+     <div class="article article--hidden">
      <h2 class="article__title"><a target="_blank" href=${short_url}>${title}</a></h2>
      <div class="article__wrapper">
      <p class="article__date">Published: ${new Intl.DateTimeFormat(
@@ -28,16 +42,18 @@ function displayStories(stories) {
        byline ? byline : "Authors not mentioned"
      }</p>
      <a target="_blank" href=${short_url}><img loading="lazy" src=${
-          multimedia[3].url
-        }></a>
+              multimedia[3].url
+            }></a>
      <p class="article__description">${abstract}</p>
      </div>
      <a class="btn_more" target="_blank" href=${short_url}>Read More</a>
      </div>`;
-        return html;
-      }
+            return html;
+          }
+        )
+        .join(""))
     )
-    .join("");
+  );
 }
 function displayCurrentSection(category) {
   btnsSort.forEach(btn => btn.classList.remove("active"));
@@ -50,7 +66,8 @@ async function getStories(category) {
       `//api.nytimes.com/svc/topstories/v2/${category}.json?api-key=${key}`
     );
     const stories = await response.json();
-    displayStories(stories.results);
+    displayStories(stories.results).then(revealArticles());
+
     displayCurrentSection(category);
   } catch (err) {
     console.log(err.message);

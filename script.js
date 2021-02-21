@@ -12,13 +12,13 @@ const options = {
 };
 
 function displayStories(stories) {
-  storiesContainer.innerHTML = stories
+  const htmlString = stories
     .slice(0, 5)
     .map(
       ({ abstract, byline, published_date, title, short_url, multimedia }) => {
-        const html = `
+        return `
      <div class="article">
-     <h2 class="article__title"><a target="_blank" href=${short_url}>${title}</a></h2>
+     <h3 class="article__title"><a target="_blank" href=${short_url}>${title}</a></h3>
      <div class="article__wrapper">
      <p class="article__date">Published: ${new Intl.DateTimeFormat(
        navigator.language,
@@ -34,10 +34,10 @@ function displayStories(stories) {
      </div>
      <a class="btn_more" target="_blank" href=${short_url}>Read More</a>
      </div>`;
-        return html;
       }
     )
     .join("");
+  storiesContainer.innerHTML = DOMPurify.sanitize(htmlString);
 }
 function displayCurrentSection(category) {
   btnsSort.forEach(btn => btn.classList.remove("active"));

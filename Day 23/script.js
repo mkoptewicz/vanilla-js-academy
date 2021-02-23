@@ -31,10 +31,13 @@ const setRandomBtnColor = () => {
 };
 const renderMonsters = () => {
   const monstersShuffled = shuffle(monsters);
-  monstersContainer.innerHTML = monstersShuffled
-    .slice()
-    .map(m => `<img src='imgs/${m}.svg'/>`)
-    .join("");
+  monstersContainer.innerHTML =
+    '<div class="row">' +
+    monstersShuffled
+      .slice()
+      .map(m => `<div class="grid"><img src='imgs/${m}.svg'></div>`)
+      .join("") +
+    "</div>";
   setRandomBtnColor();
 };
 renderMonsters();

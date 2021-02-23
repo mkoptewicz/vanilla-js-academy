@@ -1,0 +1,53 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --btnColor: #7e0f7e;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  margin: 0 auto;
+  max-width: 40em;
+  width: 88%;
+}
+h1 {
+  margin: 1em;
+  text-align: center;
+}
+.container {
+  margin: 2em;
+}
+.row {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  text-align: center;
+}
+
+.grid {
+  min-height: 6em;
+  padding: 1em;
+}
+img {
+  height: auto;
+  max-width: 100%;
+}
+.shuffle {
+  display: block;
+  color: white;
+  background-color: var(--btnColor);
+  margin: 1rem auto;
+  padding: 1em 2em;
+  border: none;
+  font-size: 1rem;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+footer {
+  margin-top: auto;
+}

@@ -25,18 +25,17 @@ function shuffle(arr) {
   }
   return arr;
 }
-const setRandomBtnColor = ()=>{
- const randomColor = btnColors[Math.floor(Math.random() * btnColors.length)];
- console.log(randomColor);
- document.documentElement.style.setProperty('--btnColor', randomColor)
-}
+const setRandomBtnColor = () => {
+  const randomColor = btnColors[Math.floor(Math.random() * btnColors.length)];
+  document.documentElement.style.setProperty("--btnColor", randomColor);
+};
 const renderMonsters = () => {
   const monstersShuffled = shuffle(monsters);
   monstersContainer.innerHTML = monstersShuffled
     .slice()
     .map(m => `<img src='imgs/${m}.svg'/>`)
     .join("");
-  setRandomBtnColor()
+  setRandomBtnColor();
 };
 renderMonsters();
 btnShuffle.addEventListener("click", renderMonsters);

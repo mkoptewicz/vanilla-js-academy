@@ -30,11 +30,10 @@ const setRandomBtnColor = () => {
   document.documentElement.style.setProperty("--btnColor", randomColor);
 };
 const renderMonsters = () => {
-  const monstersShuffled = shuffle(monsters);
+  const monstersShuffled = shuffle(monsters.slice());
   monstersContainer.innerHTML =
     '<div class="row">' +
     monstersShuffled
-      .slice()
       .map(m => `<div class="grid"><img src='imgs/${m}.svg'></div>`)
       .join("") +
     "</div>";

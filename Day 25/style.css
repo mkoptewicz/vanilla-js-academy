@@ -1,0 +1,100 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --btnColor: #7e0f7e;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  margin: 0 auto;
+  max-width: 40em;
+  width: 88%;
+  text-align: center;
+}
+h1 {
+  margin: 1em;
+  
+}
+.container {
+  margin: 2em;
+}
+.row {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  text-align: center;
+}
+
+.grid {
+  background-color: white;
+  border: none;
+  margin: 5px;
+  padding: 1em;
+  opacity: 0;
+  cursor: pointer;
+}
+.grid:focus {
+  outline: 1px solid var(--btnColor);
+}
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+img {
+  height: auto;
+  max-width: 100%;
+}
+.shuffle {
+  display: block;
+  color: white;
+  background-color: var(--btnColor);
+  margin: 1rem auto;
+  padding: 1em 2em;
+  border: none;
+  outline: 1px solid var(--btnColor);
+  font-size: 1rem;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.end-game-message {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 5rem;
+  flex-direction: column;
+}
+.end-game-message button {
+  font-size: 3rem;
+  color: white;
+  background-color: var(--btnColor);
+  border: 1px solid black;
+  padding: 0.25em 0.5em;
+  cursor: pointer;
+}
+.end-game-message button:hover {
+  background-color: white;
+  color: var(--btnColor);
+  border-color: white;
+}
+.end-game-message.show {
+  display: flex;
+}
+footer {
+  margin-top: auto;
+}

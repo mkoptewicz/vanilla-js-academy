@@ -25,6 +25,12 @@ function shuffle(arr) {
   }
   return arr;
 }
+const revealMonsters = () =>
+  document
+    .querySelectorAll(".grid")
+    .forEach(
+      i => (i.style.animation = `fadein .2s ${Math.random() + 0.2}s forwards`)
+    );
 const setRandomBtnColor = () => {
   const randomColor = btnColors[Math.floor(Math.random() * btnColors.length)];
   document.documentElement.style.setProperty("--btnColor", randomColor);
@@ -34,9 +40,10 @@ const renderMonsters = () => {
   monstersContainer.innerHTML =
     '<div class="row">' +
     monstersShuffled
-      .map(m => `<div class="grid"><img src='imgs/${m}.svg'></div>`)
+      .map(m => `<div class="grid"><img alt="${m}" data-monster="${m}" src='imgs/${m}.svg'></div>`)
       .join("") +
     "</div>";
+  revealMonsters();
   setRandomBtnColor();
 };
 renderMonsters();

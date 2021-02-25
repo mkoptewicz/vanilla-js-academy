@@ -19,7 +19,6 @@ body {
 }
 h1 {
   margin: 1em;
-  
 }
 .container {
   margin: 2em;
@@ -76,10 +75,11 @@ img {
   justify-content: center;
   align-items: center;
   color: white;
-  font-size: 5rem;
+  font-size: 4rem;
   flex-direction: column;
 }
 .end-game-message button {
+  margin-top: 2rem;
   font-size: 3rem;
   color: white;
   background-color: var(--btnColor);

@@ -12,14 +12,15 @@ const monsters = [
   "monster11",
   "sock",
 ];
+let counter;
+let previousClickedEl;
+
 const btnColors = ["#7e0f7e", "#34ac52", "#f42b37", "#1589ca", "#daa829"];
 const monstersContainer = document.querySelector(".row");
 const btnShuffle = document.querySelector(".shuffle");
 const textMessage = document.querySelector(".end-game-message-text");
 const endMessage = document.querySelector(".end-game-message");
 const btnReset = document.querySelector(".restart");
-
-let counter = monsters.length;
 
 function shuffle(arr) {
   let currentIndex = arr.length;
@@ -32,16 +33,19 @@ function shuffle(arr) {
   return arr;
 }
 function revealMonster(e) {
-  if (!e.target.matches("[data-monster]")) return;
+  const clickedMonster = e.target.dataset.monster;
+  if (
+    !e.target.matches("[data-monster]") ||
+    clickedMonster === previousClickedEl
+  )
+    return;
   e.target.matches(".grid")
-    ? (e.target.querySelector(
-        "img"
-      ).src = `imgs/${e.target.dataset.monster}.svg`)
-    : (e.target.src = `imgs/${e.target.closest("button").dataset.monster}.svg`);
+    ? (e.target.querySelector("img").src = `imgs/${clickedMonster}.svg`)
+    : (e.target.src = `imgs/${clickedMonster}.svg`);
+  previousClickedEl = clickedMonster;
   counter--;
-  console.log(counter);
   if (counter === 1 || e.target.dataset.monster === "sock") {
-    textMessage.textContent = counter === 1 ? "You won!" : "You lost!";
+    textMessage.textContent = counter === 1 ? "You win!" : "You lose!";
     endMessage.classList.add("show");
     btnReset.focus();
   }
@@ -73,4 +77,4 @@ const startGame = () => {
 };
 startGame();
 btnReset.addEventListener("click", startGame);
-document.querySelector(".row").addEventListener("click", revealMonster);
+monstersContainer.addEventListener("click", revealMonster);

@@ -34,17 +34,21 @@ function shuffle(arr) {
 }
 function revealMonster(e) {
   const clickedMonster = e.target.dataset.monster;
+  let monster = e.target.closest('[data-monster]')?.dataset.monster
+  
   if (
     !e.target.matches("[data-monster]") ||
     clickedMonster === previousClickedEl
   )
     return;
+    console.log(monster);
   e.target.matches(".grid")
     ? (e.target.querySelector("img").src = `imgs/${clickedMonster}.svg`)
     : (e.target.src = `imgs/${clickedMonster}.svg`);
+  e.target.closest("button").setAttribute("disabled", "true")
   previousClickedEl = clickedMonster;
-  counter--;
-  if (counter === 1 || e.target.dataset.monster === "sock") {
+  if (clickedMonster !== "sock") counter--;
+  if (counter === 1 || clickedMonster === "sock") {
     textMessage.textContent = counter === 1 ? "You win!" : "You lose!";
     endMessage.classList.add("show");
     btnReset.focus();
@@ -71,7 +75,7 @@ const startGame = () => {
         `<button class="grid" data-monster="${m}"><img alt="${m}" data-monster="${m}" src='imgs/door.svg'></button>`
     )
     .join("");
-
+  document.querySelector(".grid").focus();
   animateGrid();
   setRandomBtnColor();
 };

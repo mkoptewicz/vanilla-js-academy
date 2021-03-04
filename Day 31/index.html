@@ -171,10 +171,7 @@
       const tableOfContents = document.querySelector("#table-of-contents");
       const createId = heading => {
         if (!heading.id) {
-          heading.id = heading.textContent
-            .toLowerCase()
-            .replace(/ |'/g, "-")
-            .replace(/--/g, "-");
+          heading.id = heading.textContent.toLowerCase().replace(/\W+/g, "-");
         }
         return heading.id;
       };

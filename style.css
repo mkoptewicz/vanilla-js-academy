@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  padding: 2rem;
+}
+h2 {
+  font-weight: normal;
+}
+.container {
+  margin: 2rem auto;
+  max-width: 700px;
+}
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.weather-info {
+  font-size: 1.25rem;
+  flex-basis: 33%;
+}
+.weather-info img {
+  max-width: 120px;
+}
+.details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.details-info {
+  padding: 1rem 2rem;
+}
+.bold {
+  font-weight: bold;
+}
+.secondary-temp {
+  font-size: 0.6em;
+  opacity: 0.7;
+}

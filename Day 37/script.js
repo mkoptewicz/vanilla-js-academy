@@ -140,7 +140,7 @@ function displayCustomWeather(options) {
   getWeatherData();
 }
 displayCustomWeather({
-  lat: "Latitude (Degrees)",
+  lat: true,
   lon: true,
   sunrise: true,
   sunset: true,

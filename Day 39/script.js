@@ -1,5 +1,6 @@
 const lib = (function () {
   const methods = {};
+  
   methods.convertToArray = iterable => [...iterable];
 
   methods.getElem = selector => document.querySelector(selector);
